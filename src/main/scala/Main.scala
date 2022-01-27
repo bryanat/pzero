@@ -14,6 +14,17 @@ import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.bson._
 import datasets.MongoInserts
 
+/** OBJECTIVES WITH THIS APP **/
+/* CRUD */
+    //SYNCRONOUS
+      //Read 
+      //Create
+      //Update
+      //Delete
+    //ASYNCRONOUS
+      //Read 
+  /* FUTURE & PROMISE */
+  /* REGEX */
 
 object Main extends App {
   println("Main started")
@@ -21,83 +32,102 @@ object Main extends App {
   // Abstract to its own file then import
   val mongoClient: MongoClient = MongoClient()
   val database: MongoDatabase = mongoClient.getDatabase("pzero")
-  val ucollection: MongoCollection[Document] = database.getCollection("covidcollection")
+  val ccollection: MongoCollection[Document] = database.getCollection("covidcollection")
 
-  // Generates 555 usernames and passwords into the collection ucollection
-  // MongoInserts.insertUsernamesAndPasswords(555, ucollection)
-  
+  /* Generates 555 usernames and passwords into the collection ccollection */
+  //MongoInserts.insertUsernamesAndPasswords(555, ccollection)
+
   def init() = {
-    println("""
-      |
-      |
-      |
-      |
-      |== MENU == 
-      |Select a number to continue
-      |1. Sync  - C - synchronous create/.insert()
-      |2. Sync  - R - synchronous read/.find()    
-      |3. Sync  - U - synchronous update/.update()
-      |4. Sync  - D - synchronous delete/.delete()
-      |5. Async - C - asynchronous create/.insert() 
-      |6. Async - R - asynchronous read/.find()     
-      |7. Async - U - asynchronous update/.update() 
-      |8. Async - D - asynchronous delete/.delete() 
-      |""".stripMargin) // stripMargin 
-
-    var selection = 0 // default value
-    try {
-      selection = readLine("Select a number from the menu: ").toInt
-    }
-    catch {
-      case e => println("Can't you read, pick a number.")
-    }
-    finally {
-      selection match {
-        case 0 => println("You didn't input a number")
-        case 1 => println("syncCreate()")
-        case 2 => println("syncRead()")
-        case 3 => println("syncUpdate()")
-        case 4 => println("syncDelete()")
-        case 5 => println("asyncCreate()")
-        case 6 => println("asyncRead()")
-        case 7 => println("asyncUpdate()")
-        case 8 => println("asyncDelete()")
+    def menu(): Unit = {
+      println("""
+        |
+        |
+        |== MENU == 
+        |Select a number to continue
+        |0. Exit
+        |1. Sync  - C - synchronous create/.insert()
+        |2. Sync  - R - synchronous read/.find()    
+        |3. Sync  - U - synchronous update/.update()
+        |4. Sync  - D - synchronous delete/.delete()
+        |5. Async - R - asynchronous read/.find()     
+        |""".stripMargin) // stripMargin removes padding from the left side of the console
+      var selection = 6 // default value (non 0-5)
+      try {
+        selection = readLine("Select a number from the menu: ").toInt
+      }
+      catch {
+        case e : Throwable => println("Can't you read, pick a number.")
+      }
+      finally {
+        selection match {
+          case 0 => System.exit(0)           // 0 is exit
+          case 1 => {syncCreate(); menu()}   // .insert()
+          case 2 => {syncRead();   menu()}     // .find()
+          case 3 => {syncUpdate(); menu()}   // .update()
+          case 4 => {syncDelete(); menu()}   // .delete()
+          case 5 => {asyncRead();  menu()}    // .find() but async
+          case _ => {println("Invalid number, pick a number 0 through 5."); menu()} // catch all for non numbers 0-5, recursive menu() call to loop 
+        }
       }
     }
+    menu() 
   }
   init()
 
   def syncCreate(): Unit = {
-    println("syncCreate() called")
-    //init Data object for start time
-  }
-
-  def syncRead(): Unit = {
-    println("syncRead() called")
+    println("1. Sync  - C - synchronous create/.insert() selected - syncCreate() function called.")
+    var userinputField1 = readLine("Type the first field's value: ").toString()  // does not handle special characters
+    var userinputField2 = readLine("Type the second field's value: ").toString() // does not handle special characters
+    ccollection.insertOne(Document("key1" -> userinputField1, "key2" -> userinputField2)).printResults()
     //init Date object for start time
   }
 
-/* REGEX */
-/* FUTURE & PROMISE */
-/* EXTENDS */
-/* CRUD */
-  //SYNCRONOUS
-    //Read 
-    //Create
-    //Update
-    //Delete
-  //ASYNCRONOUS
-    //Read 
-    //Create
-    //Update
-    //Delete
+  def syncRead(): Unit = {
+    println("2. Sync  - R - synchronous read/.find() selected - syncRead() function called.")
+    // Reads all documents from collection
+    ccollection.find().printResults()
+    // Finds the documents with the value "user1" for the field "username"
+    println(ccollection.find(in("username", "user1")).results().head.get("username").get.asString().getValue())
+    /** API **
+     * ccollection                                                                        //
+     * ccollection.find(BSON)                                                             //
+     * ccollection.find(BSON).results()                                                   //
+     * ccollection.find(BSON).results().head                                              //
+     * ccollection.find(BSON).results().head.get("fieldname")                             //
+     * ccollection.find(BSON).results().head.get("fieldname").get                         //
+     * ccollection.find(BSON).results().head.get("fieldname").get.asString()              //
+     * ccollection.find(BSON).results().head.get("fieldname").get.asString().getValue()   // user1
+     * 
+     ** BSON **
+     * import org.mongodb.scala.model._
+     * in() , equal() , gt() , lt() , min() , max() , regex() , ...
+     * in("fieldname", "value")
+     */
 
+    //init Date object for start time
+  }
+
+  def syncUpdate(): Unit = {
+    println("3. Sync  - U - synchronous update/.update() selected - syncUpdate() function called.")
+    
+    var userinput = readLine("Type the username to update: ")
+    var newUsername = readLine("Type what you want the new username to be: ")
+    ccollection.updateOne(equal("username", userinput), set("username", newUsername)).printResults()
+  }
+
+  def syncDelete(): Unit = {
+    println("4. Sync  - D - synchronous delete/.delete() selected - syncDelete() function called.")
+
+    var userinput = readLine("Type the username to delete: ")
+    // Delete the username
+    ccollection.deleteOne(equal("username", userinput)).printResults()
+  }
 
 
   
   /* REGEX 
     val myRegex = "([\"'])(?:(?=(\\?))\2.)*?\1".r
-    var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass //BsonString{value='user1'}
+    var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get //BsonString{value='user1'}
     myRegex.findFirstMatchIn( yp ) match {
         case Some(_) => println("Password OK")
         case None => println("Password must contain a number")
@@ -105,10 +135,17 @@ object Main extends App {
   */
 
 
+
+
+
+
+
+
+
   def testThis(): Unit = {
 
     // pcollection.insertOne(equal("username", "userX"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon")))
-    ucollection.updateOne(equal("username", "user1"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon"))).printResults()
+    ccollection.updateOne(equal("username", "user1"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon"))).printResults()
 
 
 
@@ -119,23 +156,23 @@ object Main extends App {
     // var query = Document("username"-> "user2")
     // var update = Document(BsonString("password")-> "xxxxxx")
     // var update = Document(BsonString("password")-> "xxxxxx")
-    //ucollection.updateOne(equal("username", "user2"), set("username", "USERNAMEUPDATED")).printResults()
+    //ccollection.updateOne(equal("username", "user2"), set("username", "USERNAMEUPDATED")).printResults()
 
-    //ucollection.find(Document("username" -> "user1")).printResults()
-    //ucollection.find(Document("username" -> "user1")).results().getClass
-    // println(ucollection.find(Document("username" -> "user1")).results().getClass)
-    // println(ucollection.find(Document("username" -> "user1")).results())
+    //ccollection.find(Document("username" -> "user1")).printResults()
+    //ccollection.find(Document("username" -> "user1")).results().getClass
+    // println(ccollection.find(Document("username" -> "user1")).results().getClass)
+    // println(ccollection.find(Document("username" -> "user1")).results())
       // will need find() or filter() after .head
     
-    // println(ucollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass) //BsonString{value='user1'}
+    // println(ccollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass) //BsonString{value='user1'}
     
-    // var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.toString.getClass //BsonString{value='user1'}
-    //var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.asString() //BsonString{value='user1'}
-    // var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass //BsonString{value='user1'}
-    //var yl = ucollection.find(Document("username" -> "user1")).results().head.get("key").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
+    // var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get.toString.getClass //BsonString{value='user1'}
+    //var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get.asString() //BsonString{value='user1'}
+    // var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass //BsonString{value='user1'}
+    //var yl = ccollection.find(Document("username" -> "user1")).results().head.get("key").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
     
     // GOLDEN IT FINALLY WORKS, ALL FINDS NOW CAN WORK SYNCRONOUSLY WITH THE CODE BELOW WITHOUT ASYNC FUTURES AND PROMISES
-    var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
+    var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
     println(yp)
     // val regexQuote = "/('[^']*')/".r //finds values between 'single quotations'
     // var test = "dfbashdfbas'thisrighthere'"
@@ -147,41 +184,40 @@ object Main extends App {
     //     case None => println("Password must contain a number")
     // }
     
-    //println(ucollection.find(Document("username" -> "user1")).results().head.get("username").get)
+    //println(ccollection.find(Document("username" -> "user1")).results().head.get("username").get)
 
     println("deadline.")
-    // println(ucollection.find(Document("username" -> "user1")).results().head) // Document : 
-    //println(ucollection.find(Document("username" -> "user1")).results().head.get("username")) // Some
+    // println(ccollection.find(Document("username" -> "user1")).results().head) // Document : 
+    //println(ccollection.find(Document("username" -> "user1")).results().head.get("username")) // Some
     
     
   }
       //
-    // println(ucollection.find(Document("username" -> "user1")).results().head.find(("username", "user1"))) //user1
+    // println(ccollection.find(Document("username" -> "user1")).results().head.find(("username", "user1"))) //user1
       // ^^^^ AHH ITS A DOCUMENT
       // {"key" : value}
       // Document("key1" -> "value1", "")
-
- 
-
-  def logIn(): Unit= {
-
-    ucollection.find().printResults()
-    // T is Int, the type of x
-    // //ucollection.find().printResults()
-    // //var b2 = ucollection.find(in("name" -> "user1")).results()
-    // /*
-    //  * COMPARING SYNC AND ASYNC
-    //  */
-    // var b = ucollection.find(Document("username" -> "usersada1")).results()
-    // //var bb = b.foreach() // returns an iterable
-    // println(b) // returns an iterable
-
-    // // println(ucollection.find().getResults())
-    // //var r = ucollection.find().getResults() //"name" : "squiggles"
-   }
-
-
    
+  def asyncRead(): Unit = {
+    println("5. Async - R - asynchronous read/.find() selected - asyncRead() function called.")
+    var aPromise = Promise[Boolean]()
+    var aFuture = aPromise.future
+    var aUsername = "" // scope outside the Future below
+    var userinput = readLine("Type the username to find: ")
+    ccollection.find(Document("username" -> userinput)).subscribe(new Observer[Document](){
+          override def onNext(result: Document) = {
+            var aWaiting = true
+            aPromise success aWaiting
+          }
+          override def onError(e: Throwable): Unit = println(s"Error: $e")
+          override def onComplete(): Unit = println("Completed")
+        })
+      }
+  
+
+
+
+
 
 
   def createAccount(): Unit= {
@@ -205,18 +241,17 @@ object Main extends App {
       inputPassword = readLine( "password: ") 
       //if username already exists then set usernameExists = true
       val producerUsernameExists = Future {
-      ucollection.find(Document("username" -> inputName)).subscribe(new Observer[Document](){
+      ccollection.find(Document("username" -> inputName)).subscribe(new Observer[Document](){
         var whatever = "just remember this is capable here"
           override def onNext(result: Document) = {
             println("I AM RUNNING ")
-            
+            var w = "this is the value aPromise "
             // var w = () => {
             //   pass = result.pass
             //   user = result.user
             // }
             usernameExists = true
             // p success w
-            // println("isndieOnnext usernameexists:" + usernameExists)
           }
           override def onError(e: Throwable): Unit = println(s"Error: $e")
           override def onComplete(): Unit = println("Completed")
@@ -237,17 +272,26 @@ object Main extends App {
           else {
               // db.password_file.insert({"name": inputName})
               // db.password_file.insert({"password: " inputPassword})
-              ucollection.insertOne(Document("name" -> inputName, "password" -> inputPassword))
+              ccollection.insertOne(Document("name" -> inputName, "password" -> inputPassword))
               exists = false
-              println("IM HEREEEEEEE XXX")
           }
         }
       }
     }
   }  
+
+  /* WHATS NEXT??? Future features to add
+   * Inserts a subset of the csv file 'us_counties_covid19_daily.csv' (35 MB) into mongo collection 
+   * Small  : us_covid_555_subset.csv
+   * Medium : us_covid_5555_subset.csv
+   * Large  : us_covid_55555_subset.csv
+   */
+  def insertCovidData(): Unit = {
+  }
 }
 
 /*****************************************************************************/
+// ASYNC USES A SUBSCRIBER
 // .subscribe(new Observer[Document](){
 //         var whatever = "just remember this is capable here"
 
@@ -267,11 +311,11 @@ object Main extends App {
     //  * COMPARING SYNC AND ASYNC
     //  */
     // // SYNC
-    // var b = ucollection.find(Document("username" -> "user1")).results() //results is an async function (implemented through Await scala.concurrent.Await (blocking) )
+    // var b = ccollection.find(Document("username" -> "user1")).results() //results is an sync function (implemented through Await scala.concurrent.Await (blocking) )
     // b.results() // returns a list of iterables (THIS IS GOING TOO FAR FOR SAKE OF VERBAL TIME)
     // foreach() // returns an iterable (THIS IS GOING TOO FAR)
 
     // // ASYNC (alt + right arrow key to split and compare side by side)
-    // var b = ucollection.find(Document("username" -> "user1")).subscribe() //subscribe is an async function (implemented through Future and Promise scala.concurrent.{Future, Promise} (nonblocking))
+    // var b = ccollection.find(Document("username" -> "user1")).subscribe() //subscribe is an async function (implemented through Future and Promise scala.concurrent.{Future, Promise} (nonblocking))
     // b.subscribe() // returns an list of observer (THIS IS GOING TOO FAR FOR SAKE OF VERBAL TIME)
     

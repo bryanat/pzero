@@ -1,0 +1,555 @@
+date,county,state,fips,cases,deaths
+2020-01-21,Snohomish,Washington,53061.0,1,0.0
+2020-01-22,Snohomish,Washington,53061.0,1,0.0
+2020-01-23,Snohomish,Washington,53061.0,1,0.0
+2020-01-24,Cook,Illinois,17031.0,1,0.0
+2020-01-24,Snohomish,Washington,53061.0,1,0.0
+2020-01-25,Orange,California,6059.0,1,0.0
+2020-01-25,Cook,Illinois,17031.0,1,0.0
+2020-01-25,Snohomish,Washington,53061.0,1,0.0
+2020-01-26,Maricopa,Arizona,4013.0,1,0.0
+2020-01-26,Los Angeles,California,6037.0,1,0.0
+2020-01-26,Orange,California,6059.0,1,0.0
+2020-01-26,Cook,Illinois,17031.0,1,0.0
+2020-01-26,Snohomish,Washington,53061.0,1,0.0
+2020-01-27,Maricopa,Arizona,4013.0,1,0.0
+2020-01-27,Los Angeles,California,6037.0,1,0.0
+2020-01-27,Orange,California,6059.0,1,0.0
+2020-01-27,Cook,Illinois,17031.0,1,0.0
+2020-01-27,Snohomish,Washington,53061.0,1,0.0
+2020-01-28,Maricopa,Arizona,4013.0,1,0.0
+2020-01-28,Los Angeles,California,6037.0,1,0.0
+2020-01-28,Orange,California,6059.0,1,0.0
+2020-01-28,Cook,Illinois,17031.0,1,0.0
+2020-01-28,Snohomish,Washington,53061.0,1,0.0
+2020-01-29,Maricopa,Arizona,4013.0,1,0.0
+2020-01-29,Los Angeles,California,6037.0,1,0.0
+2020-01-29,Orange,California,6059.0,1,0.0
+2020-01-29,Cook,Illinois,17031.0,1,0.0
+2020-01-29,Snohomish,Washington,53061.0,1,0.0
+2020-01-30,Maricopa,Arizona,4013.0,1,0.0
+2020-01-30,Los Angeles,California,6037.0,1,0.0
+2020-01-30,Orange,California,6059.0,1,0.0
+2020-01-30,Cook,Illinois,17031.0,2,0.0
+2020-01-30,Snohomish,Washington,53061.0,1,0.0
+2020-01-31,Maricopa,Arizona,4013.0,1,0.0
+2020-01-31,Los Angeles,California,6037.0,1,0.0
+2020-01-31,Orange,California,6059.0,1,0.0
+2020-01-31,Santa Clara,California,6085.0,1,0.0
+2020-01-31,Cook,Illinois,17031.0,2,0.0
+2020-01-31,Snohomish,Washington,53061.0,1,0.0
+2020-02-01,Maricopa,Arizona,4013.0,1,0.0
+2020-02-01,Los Angeles,California,6037.0,1,0.0
+2020-02-01,Orange,California,6059.0,1,0.0
+2020-02-01,Santa Clara,California,6085.0,1,0.0
+2020-02-01,Cook,Illinois,17031.0,2,0.0
+2020-02-01,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-01,Snohomish,Washington,53061.0,1,0.0
+2020-02-02,Maricopa,Arizona,4013.0,1,0.0
+2020-02-02,Los Angeles,California,6037.0,1,0.0
+2020-02-02,Orange,California,6059.0,1,0.0
+2020-02-02,San Francisco,California,6075.0,2,0.0
+2020-02-02,Santa Clara,California,6085.0,2,0.0
+2020-02-02,Cook,Illinois,17031.0,2,0.0
+2020-02-02,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-02,Snohomish,Washington,53061.0,1,0.0
+2020-02-03,Maricopa,Arizona,4013.0,1,0.0
+2020-02-03,Los Angeles,California,6037.0,1,0.0
+2020-02-03,Orange,California,6059.0,1,0.0
+2020-02-03,San Francisco,California,6075.0,2,0.0
+2020-02-03,Santa Clara,California,6085.0,2,0.0
+2020-02-03,Cook,Illinois,17031.0,2,0.0
+2020-02-03,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-03,Snohomish,Washington,53061.0,1,0.0
+2020-02-04,Maricopa,Arizona,4013.0,1,0.0
+2020-02-04,Los Angeles,California,6037.0,1,0.0
+2020-02-04,Orange,California,6059.0,1,0.0
+2020-02-04,San Francisco,California,6075.0,2,0.0
+2020-02-04,Santa Clara,California,6085.0,2,0.0
+2020-02-04,Cook,Illinois,17031.0,2,0.0
+2020-02-04,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-04,Snohomish,Washington,53061.0,1,0.0
+2020-02-05,Maricopa,Arizona,4013.0,1,0.0
+2020-02-05,Los Angeles,California,6037.0,1,0.0
+2020-02-05,Orange,California,6059.0,1,0.0
+2020-02-05,San Francisco,California,6075.0,2,0.0
+2020-02-05,Santa Clara,California,6085.0,2,0.0
+2020-02-05,Cook,Illinois,17031.0,2,0.0
+2020-02-05,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-05,Snohomish,Washington,53061.0,1,0.0
+2020-02-05,Dane,Wisconsin,55025.0,1,0.0
+2020-02-06,Maricopa,Arizona,4013.0,1,0.0
+2020-02-06,Los Angeles,California,6037.0,1,0.0
+2020-02-06,Orange,California,6059.0,1,0.0
+2020-02-06,San Francisco,California,6075.0,2,0.0
+2020-02-06,Santa Clara,California,6085.0,2,0.0
+2020-02-06,Cook,Illinois,17031.0,2,0.0
+2020-02-06,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-06,Snohomish,Washington,53061.0,1,0.0
+2020-02-06,Dane,Wisconsin,55025.0,1,0.0
+2020-02-07,Maricopa,Arizona,4013.0,1,0.0
+2020-02-07,Los Angeles,California,6037.0,1,0.0
+2020-02-07,Orange,California,6059.0,1,0.0
+2020-02-07,San Francisco,California,6075.0,2,0.0
+2020-02-07,Santa Clara,California,6085.0,2,0.0
+2020-02-07,Cook,Illinois,17031.0,2,0.0
+2020-02-07,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-07,Snohomish,Washington,53061.0,1,0.0
+2020-02-07,Dane,Wisconsin,55025.0,1,0.0
+2020-02-08,Maricopa,Arizona,4013.0,1,0.0
+2020-02-08,Los Angeles,California,6037.0,1,0.0
+2020-02-08,Orange,California,6059.0,1,0.0
+2020-02-08,San Francisco,California,6075.0,2,0.0
+2020-02-08,Santa Clara,California,6085.0,2,0.0
+2020-02-08,Cook,Illinois,17031.0,2,0.0
+2020-02-08,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-08,Snohomish,Washington,53061.0,1,0.0
+2020-02-08,Dane,Wisconsin,55025.0,1,0.0
+2020-02-09,Maricopa,Arizona,4013.0,1,0.0
+2020-02-09,Los Angeles,California,6037.0,1,0.0
+2020-02-09,Orange,California,6059.0,1,0.0
+2020-02-09,San Francisco,California,6075.0,2,0.0
+2020-02-09,Santa Clara,California,6085.0,2,0.0
+2020-02-09,Cook,Illinois,17031.0,2,0.0
+2020-02-09,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-09,Snohomish,Washington,53061.0,1,0.0
+2020-02-09,Dane,Wisconsin,55025.0,1,0.0
+2020-02-10,Maricopa,Arizona,4013.0,1,0.0
+2020-02-10,Los Angeles,California,6037.0,1,0.0
+2020-02-10,Orange,California,6059.0,1,0.0
+2020-02-10,San Diego,California,6073.0,1,0.0
+2020-02-10,San Francisco,California,6075.0,2,0.0
+2020-02-10,Santa Clara,California,6085.0,2,0.0
+2020-02-10,Cook,Illinois,17031.0,2,0.0
+2020-02-10,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-10,Snohomish,Washington,53061.0,1,0.0
+2020-02-10,Dane,Wisconsin,55025.0,1,0.0
+2020-02-11,Maricopa,Arizona,4013.0,1,0.0
+2020-02-11,Los Angeles,California,6037.0,1,0.0
+2020-02-11,Orange,California,6059.0,1,0.0
+2020-02-11,San Diego,California,6073.0,1,0.0
+2020-02-11,San Francisco,California,6075.0,2,0.0
+2020-02-11,Santa Clara,California,6085.0,2,0.0
+2020-02-11,Cook,Illinois,17031.0,2,0.0
+2020-02-11,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-11,Snohomish,Washington,53061.0,1,0.0
+2020-02-11,Dane,Wisconsin,55025.0,1,0.0
+2020-02-12,Maricopa,Arizona,4013.0,1,0.0
+2020-02-12,Los Angeles,California,6037.0,1,0.0
+2020-02-12,Orange,California,6059.0,1,0.0
+2020-02-12,San Diego,California,6073.0,1,0.0
+2020-02-12,San Francisco,California,6075.0,2,0.0
+2020-02-12,Santa Clara,California,6085.0,2,0.0
+2020-02-12,Cook,Illinois,17031.0,2,0.0
+2020-02-12,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-12,Bexar,Texas,48029.0,1,0.0
+2020-02-12,Snohomish,Washington,53061.0,1,0.0
+2020-02-12,Dane,Wisconsin,55025.0,1,0.0
+2020-02-13,Maricopa,Arizona,4013.0,1,0.0
+2020-02-13,Los Angeles,California,6037.0,1,0.0
+2020-02-13,Orange,California,6059.0,1,0.0
+2020-02-13,San Diego,California,6073.0,1,0.0
+2020-02-13,San Francisco,California,6075.0,2,0.0
+2020-02-13,Santa Clara,California,6085.0,2,0.0
+2020-02-13,Cook,Illinois,17031.0,2,0.0
+2020-02-13,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-13,Bexar,Texas,48029.0,2,0.0
+2020-02-13,Snohomish,Washington,53061.0,1,0.0
+2020-02-13,Dane,Wisconsin,55025.0,1,0.0
+2020-02-14,Maricopa,Arizona,4013.0,1,0.0
+2020-02-14,Los Angeles,California,6037.0,1,0.0
+2020-02-14,Orange,California,6059.0,1,0.0
+2020-02-14,San Diego,California,6073.0,1,0.0
+2020-02-14,San Francisco,California,6075.0,2,0.0
+2020-02-14,Santa Clara,California,6085.0,2,0.0
+2020-02-14,Cook,Illinois,17031.0,2,0.0
+2020-02-14,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-14,Bexar,Texas,48029.0,2,0.0
+2020-02-14,Snohomish,Washington,53061.0,1,0.0
+2020-02-14,Dane,Wisconsin,55025.0,1,0.0
+2020-02-15,Maricopa,Arizona,4013.0,1,0.0
+2020-02-15,Los Angeles,California,6037.0,1,0.0
+2020-02-15,Orange,California,6059.0,1,0.0
+2020-02-15,San Diego,California,6073.0,1,0.0
+2020-02-15,San Francisco,California,6075.0,2,0.0
+2020-02-15,Santa Clara,California,6085.0,2,0.0
+2020-02-15,Cook,Illinois,17031.0,2,0.0
+2020-02-15,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-15,Bexar,Texas,48029.0,2,0.0
+2020-02-15,Snohomish,Washington,53061.0,1,0.0
+2020-02-15,Dane,Wisconsin,55025.0,1,0.0
+2020-02-16,Maricopa,Arizona,4013.0,1,0.0
+2020-02-16,Los Angeles,California,6037.0,1,0.0
+2020-02-16,Orange,California,6059.0,1,0.0
+2020-02-16,San Diego,California,6073.0,1,0.0
+2020-02-16,San Francisco,California,6075.0,2,0.0
+2020-02-16,Santa Clara,California,6085.0,2,0.0
+2020-02-16,Cook,Illinois,17031.0,2,0.0
+2020-02-16,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-16,Bexar,Texas,48029.0,2,0.0
+2020-02-16,Snohomish,Washington,53061.0,1,0.0
+2020-02-16,Dane,Wisconsin,55025.0,1,0.0
+2020-02-17,Maricopa,Arizona,4013.0,1,0.0
+2020-02-17,Los Angeles,California,6037.0,1,0.0
+2020-02-17,Orange,California,6059.0,1,0.0
+2020-02-17,San Diego,California,6073.0,1,0.0
+2020-02-17,San Francisco,California,6075.0,2,0.0
+2020-02-17,Santa Clara,California,6085.0,2,0.0
+2020-02-17,Cook,Illinois,17031.0,2,0.0
+2020-02-17,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-17,Douglas,Nebraska,31055.0,10,0.0
+2020-02-17,Bexar,Texas,48029.0,2,0.0
+2020-02-17,Snohomish,Washington,53061.0,1,0.0
+2020-02-17,Dane,Wisconsin,55025.0,1,0.0
+2020-02-18,Maricopa,Arizona,4013.0,1,0.0
+2020-02-18,Los Angeles,California,6037.0,1,0.0
+2020-02-18,Orange,California,6059.0,1,0.0
+2020-02-18,San Diego,California,6073.0,1,0.0
+2020-02-18,San Francisco,California,6075.0,2,0.0
+2020-02-18,Santa Clara,California,6085.0,2,0.0
+2020-02-18,Cook,Illinois,17031.0,2,0.0
+2020-02-18,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-18,Douglas,Nebraska,31055.0,10,0.0
+2020-02-18,Bexar,Texas,48029.0,2,0.0
+2020-02-18,Snohomish,Washington,53061.0,1,0.0
+2020-02-18,Dane,Wisconsin,55025.0,1,0.0
+2020-02-19,Maricopa,Arizona,4013.0,1,0.0
+2020-02-19,Los Angeles,California,6037.0,1,0.0
+2020-02-19,Orange,California,6059.0,1,0.0
+2020-02-19,San Diego,California,6073.0,1,0.0
+2020-02-19,San Francisco,California,6075.0,2,0.0
+2020-02-19,Santa Clara,California,6085.0,2,0.0
+2020-02-19,Cook,Illinois,17031.0,2,0.0
+2020-02-19,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-19,Douglas,Nebraska,31055.0,10,0.0
+2020-02-19,Bexar,Texas,48029.0,2,0.0
+2020-02-19,Snohomish,Washington,53061.0,1,0.0
+2020-02-19,Dane,Wisconsin,55025.0,1,0.0
+2020-02-20,Maricopa,Arizona,4013.0,1,0.0
+2020-02-20,Humboldt,California,6023.0,1,0.0
+2020-02-20,Los Angeles,California,6037.0,1,0.0
+2020-02-20,Orange,California,6059.0,1,0.0
+2020-02-20,San Diego,California,6073.0,1,0.0
+2020-02-20,San Francisco,California,6075.0,2,0.0
+2020-02-20,Santa Clara,California,6085.0,2,0.0
+2020-02-20,Cook,Illinois,17031.0,2,0.0
+2020-02-20,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-20,Douglas,Nebraska,31055.0,11,0.0
+2020-02-20,Bexar,Texas,48029.0,2,0.0
+2020-02-20,Snohomish,Washington,53061.0,1,0.0
+2020-02-20,Dane,Wisconsin,55025.0,1,0.0
+2020-02-21,Maricopa,Arizona,4013.0,1,0.0
+2020-02-21,Humboldt,California,6023.0,1,0.0
+2020-02-21,Los Angeles,California,6037.0,1,0.0
+2020-02-21,Orange,California,6059.0,1,0.0
+2020-02-21,Sacramento,California,6067.0,1,0.0
+2020-02-21,San Diego,California,6073.0,1,0.0
+2020-02-21,San Francisco,California,6075.0,2,0.0
+2020-02-21,Santa Clara,California,6085.0,2,0.0
+2020-02-21,Cook,Illinois,17031.0,2,0.0
+2020-02-21,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-21,Douglas,Nebraska,31055.0,11,0.0
+2020-02-21,Bexar,Texas,48029.0,4,0.0
+2020-02-21,Snohomish,Washington,53061.0,1,0.0
+2020-02-21,Dane,Wisconsin,55025.0,1,0.0
+2020-02-22,Maricopa,Arizona,4013.0,1,0.0
+2020-02-22,Humboldt,California,6023.0,1,0.0
+2020-02-22,Los Angeles,California,6037.0,1,0.0
+2020-02-22,Orange,California,6059.0,1,0.0
+2020-02-22,Sacramento,California,6067.0,1,0.0
+2020-02-22,San Diego,California,6073.0,1,0.0
+2020-02-22,San Francisco,California,6075.0,2,0.0
+2020-02-22,Santa Clara,California,6085.0,2,0.0
+2020-02-22,Cook,Illinois,17031.0,2,0.0
+2020-02-22,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-22,Douglas,Nebraska,31055.0,11,0.0
+2020-02-22,Bexar,Texas,48029.0,4,0.0
+2020-02-22,Snohomish,Washington,53061.0,1,0.0
+2020-02-22,Dane,Wisconsin,55025.0,1,0.0
+2020-02-23,Maricopa,Arizona,4013.0,1,0.0
+2020-02-23,Humboldt,California,6023.0,1,0.0
+2020-02-23,Los Angeles,California,6037.0,1,0.0
+2020-02-23,Orange,California,6059.0,1,0.0
+2020-02-23,Sacramento,California,6067.0,1,0.0
+2020-02-23,San Diego,California,6073.0,1,0.0
+2020-02-23,San Francisco,California,6075.0,2,0.0
+2020-02-23,Santa Clara,California,6085.0,2,0.0
+2020-02-23,Cook,Illinois,17031.0,2,0.0
+2020-02-23,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-23,Douglas,Nebraska,31055.0,11,0.0
+2020-02-23,Bexar,Texas,48029.0,4,0.0
+2020-02-23,Snohomish,Washington,53061.0,1,0.0
+2020-02-23,Dane,Wisconsin,55025.0,1,0.0
+2020-02-24,Maricopa,Arizona,4013.0,1,0.0
+2020-02-24,Humboldt,California,6023.0,1,0.0
+2020-02-24,Los Angeles,California,6037.0,1,0.0
+2020-02-24,Orange,California,6059.0,1,0.0
+2020-02-24,Sacramento,California,6067.0,1,0.0
+2020-02-24,San Diego,California,6073.0,1,0.0
+2020-02-24,San Francisco,California,6075.0,3,0.0
+2020-02-24,Santa Clara,California,6085.0,2,0.0
+2020-02-24,Solano,California,6095.0,1,0.0
+2020-02-24,Cook,Illinois,17031.0,2,0.0
+2020-02-24,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-24,Douglas,Nebraska,31055.0,12,0.0
+2020-02-24,Bexar,Texas,48029.0,10,0.0
+2020-02-24,Snohomish,Washington,53061.0,1,0.0
+2020-02-24,Spokane,Washington,53063.0,4,0.0
+2020-02-24,Dane,Wisconsin,55025.0,1,0.0
+2020-02-25,Maricopa,Arizona,4013.0,1,0.0
+2020-02-25,Humboldt,California,6023.0,1,0.0
+2020-02-25,Los Angeles,California,6037.0,1,0.0
+2020-02-25,Orange,California,6059.0,1,0.0
+2020-02-25,Sacramento,California,6067.0,1,0.0
+2020-02-25,San Diego,California,6073.0,1,0.0
+2020-02-25,San Francisco,California,6075.0,3,0.0
+2020-02-25,Santa Clara,California,6085.0,2,0.0
+2020-02-25,Solano,California,6095.0,1,0.0
+2020-02-25,Cook,Illinois,17031.0,2,0.0
+2020-02-25,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-25,Douglas,Nebraska,31055.0,13,0.0
+2020-02-25,Bexar,Texas,48029.0,10,0.0
+2020-02-25,Salt Lake,Utah,49035.0,1,0.0
+2020-02-25,Snohomish,Washington,53061.0,1,0.0
+2020-02-25,Spokane,Washington,53063.0,4,0.0
+2020-02-25,Dane,Wisconsin,55025.0,1,0.0
+2020-02-26,Maricopa,Arizona,4013.0,1,0.0
+2020-02-26,Humboldt,California,6023.0,1,0.0
+2020-02-26,Los Angeles,California,6037.0,1,0.0
+2020-02-26,Marin,California,6041.0,1,0.0
+2020-02-26,Napa,California,6055.0,1,0.0
+2020-02-26,Orange,California,6059.0,1,0.0
+2020-02-26,Sacramento,California,6067.0,3,0.0
+2020-02-26,San Diego,California,6073.0,1,0.0
+2020-02-26,San Francisco,California,6075.0,3,0.0
+2020-02-26,Santa Clara,California,6085.0,2,0.0
+2020-02-26,Solano,California,6095.0,11,0.0
+2020-02-26,Sonoma,California,6097.0,1,0.0
+2020-02-26,Cook,Illinois,17031.0,2,0.0
+2020-02-26,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-26,Douglas,Nebraska,31055.0,13,0.0
+2020-02-26,Bexar,Texas,48029.0,10,0.0
+2020-02-26,Salt Lake,Utah,49035.0,1,0.0
+2020-02-26,Snohomish,Washington,53061.0,1,0.0
+2020-02-26,Spokane,Washington,53063.0,4,0.0
+2020-02-26,Dane,Wisconsin,55025.0,1,0.0
+2020-02-27,Maricopa,Arizona,4013.0,1,0.0
+2020-02-27,Humboldt,California,6023.0,1,0.0
+2020-02-27,Los Angeles,California,6037.0,1,0.0
+2020-02-27,Marin,California,6041.0,1,0.0
+2020-02-27,Napa,California,6055.0,1,0.0
+2020-02-27,Orange,California,6059.0,1,0.0
+2020-02-27,Sacramento,California,6067.0,3,0.0
+2020-02-27,San Diego,California,6073.0,1,0.0
+2020-02-27,San Francisco,California,6075.0,3,0.0
+2020-02-27,Santa Clara,California,6085.0,2,0.0
+2020-02-27,Solano,California,6095.0,11,0.0
+2020-02-27,Sonoma,California,6097.0,1,0.0
+2020-02-27,Cook,Illinois,17031.0,2,0.0
+2020-02-27,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-27,Douglas,Nebraska,31055.0,13,0.0
+2020-02-27,Bexar,Texas,48029.0,10,0.0
+2020-02-27,Salt Lake,Utah,49035.0,1,0.0
+2020-02-27,Snohomish,Washington,53061.0,1,0.0
+2020-02-27,Spokane,Washington,53063.0,4,0.0
+2020-02-27,Dane,Wisconsin,55025.0,1,0.0
+2020-02-28,Maricopa,Arizona,4013.0,1,0.0
+2020-02-28,Humboldt,California,6023.0,1,0.0
+2020-02-28,Los Angeles,California,6037.0,1,0.0
+2020-02-28,Marin,California,6041.0,1,0.0
+2020-02-28,Napa,California,6055.0,1,0.0
+2020-02-28,Orange,California,6059.0,1,0.0
+2020-02-28,Sacramento,California,6067.0,3,0.0
+2020-02-28,San Diego,California,6073.0,1,0.0
+2020-02-28,San Francisco,California,6075.0,3,0.0
+2020-02-28,Santa Clara,California,6085.0,3,0.0
+2020-02-28,Solano,California,6095.0,11,0.0
+2020-02-28,Sonoma,California,6097.0,1,0.0
+2020-02-28,Cook,Illinois,17031.0,2,0.0
+2020-02-28,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-28,Douglas,Nebraska,31055.0,13,0.0
+2020-02-28,Washington,Oregon,41067.0,1,0.0
+2020-02-28,Bexar,Texas,48029.0,11,0.0
+2020-02-28,Salt Lake,Utah,49035.0,1,0.0
+2020-02-28,King,Washington,53033.0,1,0.0
+2020-02-28,Snohomish,Washington,53061.0,2,0.0
+2020-02-28,Spokane,Washington,53063.0,4,0.0
+2020-02-28,Dane,Wisconsin,55025.0,1,0.0
+2020-02-29,Maricopa,Arizona,4013.0,1,0.0
+2020-02-29,Humboldt,California,6023.0,1,0.0
+2020-02-29,Los Angeles,California,6037.0,1,0.0
+2020-02-29,Marin,California,6041.0,1,0.0
+2020-02-29,Napa,California,6055.0,1,0.0
+2020-02-29,Orange,California,6059.0,1,0.0
+2020-02-29,Sacramento,California,6067.0,3,0.0
+2020-02-29,San Diego,California,6073.0,1,0.0
+2020-02-29,San Francisco,California,6075.0,3,0.0
+2020-02-29,Santa Clara,California,6085.0,4,0.0
+2020-02-29,Solano,California,6095.0,11,0.0
+2020-02-29,Sonoma,California,6097.0,1,0.0
+2020-02-29,Cook,Illinois,17031.0,3,0.0
+2020-02-29,Suffolk,Massachusetts,25025.0,1,0.0
+2020-02-29,Douglas,Nebraska,31055.0,13,0.0
+2020-02-29,Washington,Oregon,41067.0,1,0.0
+2020-02-29,Bexar,Texas,48029.0,11,0.0
+2020-02-29,Salt Lake,Utah,49035.0,1,0.0
+2020-02-29,King,Washington,53033.0,4,1.0
+2020-02-29,Snohomish,Washington,53061.0,2,0.0
+2020-02-29,Spokane,Washington,53063.0,4,0.0
+2020-02-29,Dane,Wisconsin,55025.0,1,0.0
+2020-03-01,Maricopa,Arizona,4013.0,1,0.0
+2020-03-01,Alameda,California,6001.0,1,0.0
+2020-03-01,Humboldt,California,6023.0,1,0.0
+2020-03-01,Los Angeles,California,6037.0,1,0.0
+2020-03-01,Marin,California,6041.0,1,0.0
+2020-03-01,Napa,California,6055.0,1,0.0
+2020-03-01,Orange,California,6059.0,1,0.0
+2020-03-01,Sacramento,California,6067.0,3,0.0
+2020-03-01,San Diego,California,6073.0,1,0.0
+2020-03-01,San Francisco,California,6075.0,3,0.0
+2020-03-01,Santa Clara,California,6085.0,7,0.0
+2020-03-01,Solano,California,6095.0,12,0.0
+2020-03-01,Sonoma,California,6097.0,1,0.0
+2020-03-01,Hillsborough,Florida,12057.0,1,0.0
+2020-03-01,Manatee,Florida,12081.0,1,0.0
+2020-03-01,Cook,Illinois,17031.0,3,0.0
+2020-03-01,Suffolk,Massachusetts,25025.0,1,0.0
+2020-03-01,Douglas,Nebraska,31055.0,13,0.0
+2020-03-01,New York City,New York,,1,0.0
+2020-03-01,Washington,Oregon,41067.0,2,0.0
+2020-03-01,Unknown,Rhode Island,,2,0.0
+2020-03-01,Bexar,Texas,48029.0,11,0.0
+2020-03-01,Salt Lake,Utah,49035.0,1,0.0
+2020-03-01,King,Washington,53033.0,11,3.0
+2020-03-01,Snohomish,Washington,53061.0,2,0.0
+2020-03-01,Spokane,Washington,53063.0,4,0.0
+2020-03-01,Dane,Wisconsin,55025.0,1,0.0
+2020-03-02,Maricopa,Arizona,4013.0,1,0.0
+2020-03-02,Alameda,California,6001.0,1,0.0
+2020-03-02,Humboldt,California,6023.0,1,0.0
+2020-03-02,Los Angeles,California,6037.0,1,0.0
+2020-03-02,Marin,California,6041.0,1,0.0
+2020-03-02,Napa,California,6055.0,1,0.0
+2020-03-02,Orange,California,6059.0,1,0.0
+2020-03-02,Placer,California,6061.0,1,0.0
+2020-03-02,Sacramento,California,6067.0,3,0.0
+2020-03-02,San Diego,California,6073.0,1,0.0
+2020-03-02,San Francisco,California,6075.0,3,0.0
+2020-03-02,San Mateo,California,6081.0,1,0.0
+2020-03-02,Santa Clara,California,6085.0,9,0.0
+2020-03-02,Solano,California,6095.0,12,0.0
+2020-03-02,Sonoma,California,6097.0,2,0.0
+2020-03-02,Hillsborough,Florida,12057.0,1,0.0
+2020-03-02,Manatee,Florida,12081.0,1,0.0
+2020-03-02,Fulton,Georgia,13121.0,2,0.0
+2020-03-02,Cook,Illinois,17031.0,4,0.0
+2020-03-02,Norfolk,Massachusetts,25021.0,1,0.0
+2020-03-02,Suffolk,Massachusetts,25025.0,1,0.0
+2020-03-02,Douglas,Nebraska,31055.0,13,0.0
+2020-03-02,Grafton,New Hampshire,33009.0,1,0.0
+2020-03-02,New York City,New York,,1,0.0
+2020-03-02,Washington,Oregon,41067.0,2,0.0
+2020-03-02,Unknown,Rhode Island,,2,0.0
+2020-03-02,Bexar,Texas,48029.0,11,0.0
+2020-03-02,Salt Lake,Utah,49035.0,1,0.0
+2020-03-02,King,Washington,53033.0,15,6.0
+2020-03-02,Snohomish,Washington,53061.0,3,0.0
+2020-03-02,Spokane,Washington,53063.0,4,0.0
+2020-03-02,Walla Walla,Washington,53071.0,1,0.0
+2020-03-02,Dane,Wisconsin,55025.0,1,0.0
+2020-03-03,Maricopa,Arizona,4013.0,2,0.0
+2020-03-03,Alameda,California,6001.0,2,0.0
+2020-03-03,Contra Costa,California,6013.0,1,0.0
+2020-03-03,Humboldt,California,6023.0,1,0.0
+2020-03-03,Los Angeles,California,6037.0,1,0.0
+2020-03-03,Marin,California,6041.0,1,0.0
+2020-03-03,Napa,California,6055.0,1,0.0
+2020-03-03,Orange,California,6059.0,3,0.0
+2020-03-03,Placer,California,6061.0,2,0.0
+2020-03-03,Sacramento,California,6067.0,3,0.0
+2020-03-03,San Diego,California,6073.0,1,0.0
+2020-03-03,San Francisco,California,6075.0,3,0.0
+2020-03-03,San Mateo,California,6081.0,1,0.0
+2020-03-03,Santa Clara,California,6085.0,11,0.0
+2020-03-03,Solano,California,6095.0,12,0.0
+2020-03-03,Sonoma,California,6097.0,2,0.0
+2020-03-03,Hillsborough,Florida,12057.0,2,0.0
+2020-03-03,Manatee,Florida,12081.0,1,0.0
+2020-03-03,Fulton,Georgia,13121.0,2,0.0
+2020-03-03,Cook,Illinois,17031.0,4,0.0
+2020-03-03,Norfolk,Massachusetts,25021.0,1,0.0
+2020-03-03,Suffolk,Massachusetts,25025.0,1,0.0
+2020-03-03,Douglas,Nebraska,31055.0,13,0.0
+2020-03-03,Grafton,New Hampshire,33009.0,2,0.0
+2020-03-03,New York City,New York,,2,0.0
+2020-03-03,Wake,North Carolina,37183.0,1,0.0
+2020-03-03,Washington,Oregon,41067.0,2,0.0
+2020-03-03,Unknown,Rhode Island,,2,0.0
+2020-03-03,Bexar,Texas,48029.0,11,0.0
+2020-03-03,Salt Lake,Utah,49035.0,1,0.0
+2020-03-03,King,Washington,53033.0,22,10.0
+2020-03-03,Snohomish,Washington,53061.0,5,0.0
+2020-03-03,Spokane,Washington,53063.0,4,0.0
+2020-03-03,Walla Walla,Washington,53071.0,1,0.0
+2020-03-03,Dane,Wisconsin,55025.0,1,0.0
+2020-03-04,Maricopa,Arizona,4013.0,2,0.0
+2020-03-04,Alameda,California,6001.0,2,0.0
+2020-03-04,Contra Costa,California,6013.0,1,0.0
+2020-03-04,Humboldt,California,6023.0,1,0.0
+2020-03-04,Los Angeles,California,6037.0,7,0.0
+2020-03-04,Marin,California,6041.0,1,0.0
+2020-03-04,Napa,California,6055.0,1,0.0
+2020-03-04,Orange,California,6059.0,3,0.0
+2020-03-04,Placer,California,6061.0,2,1.0
+2020-03-04,Sacramento,California,6067.0,3,0.0
+2020-03-04,San Diego,California,6073.0,1,0.0
+2020-03-04,San Francisco,California,6075.0,3,0.0
+2020-03-04,San Mateo,California,6081.0,1,0.0
+2020-03-04,Santa Clara,California,6085.0,14,0.0
+2020-03-04,Solano,California,6095.0,12,0.0
+2020-03-04,Sonoma,California,6097.0,3,0.0
+2020-03-04,Hillsborough,Florida,12057.0,2,0.0
+2020-03-04,Manatee,Florida,12081.0,1,0.0
+2020-03-04,Fulton,Georgia,13121.0,2,0.0
+2020-03-04,Cook,Illinois,17031.0,4,0.0
+2020-03-04,Norfolk,Massachusetts,25021.0,1,0.0
+2020-03-04,Suffolk,Massachusetts,25025.0,1,0.0
+2020-03-04,Douglas,Nebraska,31055.0,13,0.0
+2020-03-04,Grafton,New Hampshire,33009.0,2,0.0
+2020-03-04,Bergen,New Jersey,34003.0,1,0.0
+2020-03-04,New York City,New York,,2,0.0
+2020-03-04,Westchester,New York,36119.0,9,0.0
+2020-03-04,Wake,North Carolina,37183.0,1,0.0
+2020-03-04,Washington,Oregon,41067.0,2,0.0
+2020-03-04,Unknown,Rhode Island,,2,0.0
+2020-03-04,Bexar,Texas,48029.0,11,0.0
+2020-03-04,Fort Bend,Texas,48157.0,1,0.0
+2020-03-04,Salt Lake,Utah,49035.0,1,0.0
+2020-03-04,Chelan,Washington,53007.0,1,0.0
+2020-03-04,King,Washington,53033.0,33,11.0
+2020-03-04,Snohomish,Washington,53061.0,8,0.0
+2020-03-04,Spokane,Washington,53063.0,4,0.0
+2020-03-04,Walla Walla,Washington,53071.0,1,0.0
+2020-03-04,Dane,Wisconsin,55025.0,1,0.0
+2020-03-05,Maricopa,Arizona,4013.0,2,0.0
+2020-03-05,Alameda,California,6001.0,2,0.0
+2020-03-05,Contra Costa,California,6013.0,1,0.0
+2020-03-05,Humboldt,California,6023.0,1,0.0
+2020-03-05,Los Angeles,California,6037.0,11,0.0
+2020-03-05,Marin,California,6041.0,1,0.0
+2020-03-05,Napa,California,6055.0,1,0.0
+2020-03-05,Orange,California,6059.0,3,0.0
+2020-03-05,Placer,California,6061.0,2,1.0
+2020-03-05,Sacramento,California,6067.0,3,0.0
+2020-03-05,San Diego,California,6073.0,1,0.0
+2020-03-05,San Francisco,California,6075.0,5,0.0
+2020-03-05,San Mateo,California,6081.0,1,0.0
+2020-03-05,Santa Clara,California,6085.0,20,0.0
+2020-03-05,Solano,California,6095.0,12,0.0
+2020-03-05,Sonoma,California,6097.0,3,0.0
+2020-03-05,Douglas,Colorado,8035.0,1,0.0
+2020-03-05,Jefferson,Colorado,8059.0,1,0.0
+2020-03-05,Hillsborough,Florida,12057.0,2,0.0
+2020-03-05,Manatee,Florida,12081.0,1,0.0
+2020-03-05,Santa Rosa,Florida,12113.0,1,0.0
+2020-03-05,Fulton,Georgia,13121.0,2,0.0

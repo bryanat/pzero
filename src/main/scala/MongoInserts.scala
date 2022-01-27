@@ -4,9 +4,6 @@ import org.mongodb.scala._
 import tour.Helpers._
 
 object MongoInserts {
-  def doSomething(){
-    println("I exist")
-  }
 
   /*
    * Inserts n usernames and passwords into the collectionName collection
@@ -23,4 +20,7 @@ object MongoInserts {
       collectionName.insertOne(newDoc).printResults()
     }
   }
+
+  
+
 }

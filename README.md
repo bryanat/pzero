@@ -8,6 +8,8 @@ have to used Scala 2 because mongo
 ### Mongo version 2.9.0
 dotty compiler doesnt support
 
+TALK ABOUT HOW WE RESOLVED CONNECTION WITH APACHE MAVEN
+- 403 link
 
 ASYNC vs SYNC
 - sbt run at start of presentation
