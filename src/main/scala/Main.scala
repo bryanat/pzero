@@ -21,7 +21,7 @@ object Main extends App {
   // Abstract to its own file then import
   val mongoClient: MongoClient = MongoClient()
   val database: MongoDatabase = mongoClient.getDatabase("pzero")
-  val ucollection: MongoCollection[Document] = database.getCollection("usercollection")
+  val ucollection: MongoCollection[Document] = database.getCollection("covidcollection")
 
   // Generates 555 usernames and passwords into the collection ucollection
   // MongoInserts.insertUsernamesAndPasswords(555, ucollection)
@@ -67,6 +67,16 @@ object Main extends App {
   }
   init()
 
+  def syncCreate(): Unit = {
+    println("syncCreate() called")
+    //init Data object for start time
+  }
+
+  def syncRead(): Unit = {
+    println("syncRead() called")
+    //init Date object for start time
+  }
+
 /* REGEX */
 /* FUTURE & PROMISE */
 /* EXTENDS */
@@ -96,7 +106,6 @@ object Main extends App {
 
 
   def testThis(): Unit = {
-    println("I AM WORKING")
 
     // pcollection.insertOne(equal("username", "userX"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon")))
     ucollection.updateOne(equal("username", "user1"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon"))).printResults()
