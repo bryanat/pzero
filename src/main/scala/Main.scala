@@ -13,8 +13,9 @@ import ExecutionContext.Implicits.global
 import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.bson._
 import datasets.MongoInserts
+import scala.io.Source
 
-/** OBJECTIVES WITH THIS APP **/
+/** OBJECTIVES FOR THIS P0 CODE **/
 /* CRUD */
     //SYNCRONOUS
       //Read 
@@ -25,6 +26,7 @@ import datasets.MongoInserts
       //Read 
   /* FUTURE & PROMISE */
   /* REGEX */
+  /* SHOW MONGO INSERTS */
 
 object Main extends App {
   println("Main started")
@@ -35,7 +37,7 @@ object Main extends App {
   val ccollection: MongoCollection[Document] = database.getCollection("covidcollection")
 
   /* Generates 555 usernames and passwords into the collection ccollection */
-  //MongoInserts.insertUsernamesAndPasswords(555, ccollection)
+  // MongoInserts.insertUsernamesAndPasswords(555, ccollection)
 
   def init() = {
     def menu(): Unit = {
@@ -43,30 +45,34 @@ object Main extends App {
         |
         |
         |== MENU == 
-        |Select a number to continue
+        |Select a number to manage user accounts
         |0. Exit
         |1. Sync  - C - synchronous create/.insert()
-        |2. Sync  - R - synchronous read/.find()    
+        |2. Sync  - R - synchronous read/.find() all    
         |3. Sync  - U - synchronous update/.update()
         |4. Sync  - D - synchronous delete/.delete()
-        |5. Async - R - asynchronous read/.find()     
+        |5. Sync  - R - synchronous read/.find() key      
+        |6. Async - R - asynchronous read/.find()
+        |7. Login
         |""".stripMargin) // stripMargin removes padding from the left side of the console
-      var selection = 6 // default value (non 0-5)
+      var selection = 9 // default value (non 0-5)
       try {
         selection = readLine("Select a number from the menu: ").toInt
       }
       catch {
-        case e : Throwable => println("Can't you read, pick a number.")
+        case e : Throwable => println("Pick again from the menu.")
       }
       finally {
         selection match {
-          case 0 => System.exit(0)           // 0 is exit
-          case 1 => {syncCreate(); menu()}   // .insert()
-          case 2 => {syncRead();   menu()}     // .find()
-          case 3 => {syncUpdate(); menu()}   // .update()
-          case 4 => {syncDelete(); menu()}   // .delete()
-          case 5 => {asyncRead();  menu()}    // .find() but async
-          case _ => {println("Invalid number, pick a number 0 through 5."); menu()} // catch all for non numbers 0-5, recursive menu() call to loop 
+          case 0 => System.exit(0)            // 0 is exit
+          case 1 => {syncCreate(); menu()}    // .insert()
+          case 2 => {syncRead();   menu()}    // .find()
+          case 3 => {syncUpdate(); menu()}    // .update()
+          case 4 => {syncDelete(); menu()}    // .delete()
+          case 5 => {syncReadKey();  menu()}  // .find() key value
+          case 6 => {asyncRead();  menu()}    // .find() but async
+          case 7 => {login();}                //
+          case _ => {println("Invalid number, pick a number 0 through 7."); menu()} // catch all for non numbers 0-7, recursive menu() call to loop 
         }
       }
     }
@@ -80,6 +86,7 @@ object Main extends App {
     var userinputField2 = readLine("Type the second field's value: ").toString() // does not handle special characters
     ccollection.insertOne(Document("key1" -> userinputField1, "key2" -> userinputField2)).printResults()
     //init Date object for start time
+    //var userinputmenu = readLine("Press any key to return to the menu")
   }
 
   def syncRead(): Unit = {
@@ -87,7 +94,7 @@ object Main extends App {
     // Reads all documents from collection
     ccollection.find().printResults()
     // Finds the documents with the value "user1" for the field "username"
-    println(ccollection.find(in("username", "user1")).results().head.get("username").get.asString().getValue())
+    var talkaboutAPI = ccollection.find(in("username", "user1")).results().head.get("username").get.asString().getValue()
     /** API **
      * ccollection                                                                        //
      * ccollection.find(BSON)                                                             //
@@ -96,7 +103,7 @@ object Main extends App {
      * ccollection.find(BSON).results().head.get("fieldname")                             //
      * ccollection.find(BSON).results().head.get("fieldname").get                         //
      * ccollection.find(BSON).results().head.get("fieldname").get.asString()              //
-     * ccollection.find(BSON).results().head.get("fieldname").get.asString().getValue()   // user1
+     * ccollection.find(BSON).results().head.get("fieldname").get.asString().getValue()   //
      * 
      ** BSON **
      * import org.mongodb.scala.model._
@@ -123,7 +130,28 @@ object Main extends App {
     ccollection.deleteOne(equal("username", userinput)).printResults()
   }
 
+  def syncReadKey(): Unit = {
+    println("5. Sync  - R - synchronous read/.find() key - syncReadKey() function called.")
+    var userinput = readLine("Type the username whose password you want to search for: ").toString()
+    // Finds the documents with the value "user1" for the field "username"
+    println("The password for "+userinput+" is: " + ccollection.find(in("username", userinput)).results().head.get("password").get.asString().getValue())
+  }
 
+  def login(): Unit = {
+    var userinputUsername = readLine("Enter username: ")
+    var userinputPassword = readLine("Enter password: ")
+    // if (userinputUsername == ccollection.find(in("username", userinputUsername)).results().head.get("username").get.asString().getValue() 
+    // println(ccollection.find(in("username", userinputUsername)).results().head.get("password").get.asString().getValue())
+    if (userinputUsername == ccollection.find(in("username", userinputUsername)).results().head.get("username").get.asString().getValue() 
+        && userinputPassword == ccollection.find(in("username", userinputUsername)).results().head.get("password").get.asString().getValue()) {
+          println("LOGGED IN")
+          loggedinMenu();
+        }
+    else {
+      println("Incorrect password for the entered username, try again.")
+      login();
+    }
+  }
   
   /* REGEX 
     val myRegex = "([\"'])(?:(?=(\\?))\2.)*?\1".r
@@ -133,152 +161,168 @@ object Main extends App {
         case None => println("Password must contain a number")
     }
   */
-
-
-
-
-
-
-
-
-
-  def testThis(): Unit = {
-
-    // pcollection.insertOne(equal("username", "userX"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon")))
-    ccollection.updateOne(equal("username", "user1"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon"))).printResults()
-
-
-
-    // var inputName = readLine("INPUT USERNAME: ")
-    // var l = inputName.toString()
-
-    // var query = Document("username"-> inputName.toString())
-    // var query = Document("username"-> "user2")
-    // var update = Document(BsonString("password")-> "xxxxxx")
-    // var update = Document(BsonString("password")-> "xxxxxx")
-    //ccollection.updateOne(equal("username", "user2"), set("username", "USERNAMEUPDATED")).printResults()
-
-    //ccollection.find(Document("username" -> "user1")).printResults()
-    //ccollection.find(Document("username" -> "user1")).results().getClass
-    // println(ccollection.find(Document("username" -> "user1")).results().getClass)
-    // println(ccollection.find(Document("username" -> "user1")).results())
-      // will need find() or filter() after .head
-    
-    // println(ccollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass) //BsonString{value='user1'}
-    
-    // var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get.toString.getClass //BsonString{value='user1'}
-    //var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get.asString() //BsonString{value='user1'}
-    // var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass //BsonString{value='user1'}
-    //var yl = ccollection.find(Document("username" -> "user1")).results().head.get("key").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
-    
-    // GOLDEN IT FINALLY WORKS, ALL FINDS NOW CAN WORK SYNCRONOUSLY WITH THE CODE BELOW WITHOUT ASYNC FUTURES AND PROMISES
-    var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
-    println(yp)
-    // val regexQuote = "/('[^']*')/".r //finds values between 'single quotations'
-    // var test = "dfbashdfbas'thisrighthere'"
-    // var testwhoa = for (yup <- regexQuote.findFirstMatchIn( yp )) yield yup.group(1)
-    // println(testwhoa)
-    
-    //  match {
-    //     case Some(_) => println("Password OK")
-    //     case None => println("Password must contain a number")
-    // }
-    
-    //println(ccollection.find(Document("username" -> "user1")).results().head.get("username").get)
-
-    println("deadline.")
-    // println(ccollection.find(Document("username" -> "user1")).results().head) // Document : 
-    //println(ccollection.find(Document("username" -> "user1")).results().head.get("username")) // Some
-    
-    
-  }
-      //
-    // println(ccollection.find(Document("username" -> "user1")).results().head.find(("username", "user1"))) //user1
-      // ^^^^ AHH ITS A DOCUMENT
-      // {"key" : value}
-      // Document("key1" -> "value1", "")
    
   def asyncRead(): Unit = {
-    println("5. Async - R - asynchronous read/.find() selected - asyncRead() function called.")
-    var aPromise = Promise[Boolean]()
+    println("6s. Async - R - asynchronous read/.find() selected - asyncRead() function called.")
+    var aPromise = Promise[String]()
     var aFuture = aPromise.future
-    var aUsername = "" // scope outside the Future below
-    var userinput = readLine("Type the username to find: ")
-    ccollection.find(Document("username" -> userinput)).subscribe(new Observer[Document](){
+    var aPassword = "" // scope outside the Future below
+    var userinput = readLine("Type the username whose password you want to find: ")
+    ccollection.find(in("username", userinput)).subscribe(new Observer[Document](){
           override def onNext(result: Document) = {
-            var aWaiting = true
-            aPromise success aWaiting
+            // aPassword = result.head.get("password").get.asString().getValue()
+            //println(result.get("password").get.asString().getValue())
+            aPassword = result.get("password").get.asString().getValue()
+            aPromise success aPassword
           }
           override def onError(e: Throwable): Unit = println(s"Error: $e")
-          override def onComplete(): Unit = println("Completed")
-        })
-      }
-  
-
-
-
-
-
-
-  def createAccount(): Unit= {
-    println("createAccount called")
-    var exists = true
-    var inputName = ""
-    var inputPassword = ""
-    //create username and password
-    while (exists == true) {
-    var p = Promise[Boolean]()
-    var f = p.future
-    var usernameExists = false
-    var user = ""
-    var pass = ""
-    // var w = () => {
-    //   pass = result.pass
-    //   user = result.user
-    // }
-      println("please create new username and password")
-      inputName = readLine("username: ") 
-      inputPassword = readLine( "password: ") 
-      //if username already exists then set usernameExists = true
-      val producerUsernameExists = Future {
-      ccollection.find(Document("username" -> inputName)).subscribe(new Observer[Document](){
-        var whatever = "just remember this is capable here"
-          override def onNext(result: Document) = {
-            println("I AM RUNNING ")
-            var w = "this is the value aPromise "
-            // var w = () => {
-            //   pass = result.pass
-            //   user = result.user
-            // }
-            usernameExists = true
-            // p success w
-          }
-          override def onError(e: Throwable): Unit = println(s"Error: $e")
-          override def onComplete(): Unit = println("Completed")
-        })
-      }
-      println("outside foreach:" + usernameExists)
-      val consumerUsernameExists = Future {
-        println("jsadbfkasbd")
-        f foreach { ifUsernameExistsFutureVar =>
+          override def onComplete(): Unit = println("Promise completed and password value has been returned. Passwords match.")
+    })
+    val consumerUsernameExists = Future {
+        aFuture foreach { i =>
           // if already exists, ask again
-          println("inside foreach:" + usernameExists)
-          if (ifUsernameExistsFutureVar == true) {
-              println("user name already exists, please create another one")
-          }
-          else if (inputPassword.length<6) {
-              println("password must be at least 6 characters. please enter again")
-          }
-          else {
-              // db.password_file.insert({"name": inputName})
-              // db.password_file.insert({"password: " inputPassword})
-              ccollection.insertOne(Document("name" -> inputName, "password" -> inputPassword))
-              exists = false
-          }
+          println("The users password is: " + i)
         }
       }
     }
-  }  
+
+  def loggedinMenu(): Unit = {
+    def subMenu(): Unit = {
+      println("""
+                |
+                |
+                |== MENUUUUUUUUUU == 
+                |Select a number to continue
+                |0. Exit
+                |1. Stream Covid data (small)
+                |2. Stream Covid data (medium)
+                |3. Stream Covid data (large)
+                |""".stripMargin) // stripMargin removes padding from the left side of the console
+      var selection = 9 // default value (non 0-5)
+      try {
+        selection = readLine("Select a number from the menu: ").toInt
+      }
+      catch {
+        case e : Throwable => println("Pick again from the menu.")
+      }
+      finally {
+        selection match {
+          case 0 => System.exit(0)            // 0 is exit
+          case 1 => {streamCovid("small"); subMenu()}   
+          case 2 => {streamCovid("medium");   subMenu()}  
+          case 3 => {streamCovid("large"); subMenu()}  
+          case 4 => {importCovid();}
+          case _ => {println("Invalid number, pick a number 0 through 3."); subMenu()} // catch all for non numbers 0-3, recursive menu() call to loop 
+        }
+      }
+    }
+    subMenu() 
+  }
+
+  def streamCovid(size: String): Unit = {
+    var filename = ""
+    size match 
+      {
+        case "small" => filename = "C:/revenant/pzero/src/resources/us_covid_555_subset.csv"
+        case "medium" => filename = "C:/revenant/pzero/src/resources/us_covid_5555_subset.csv"
+        case "large" => filename = "C:/revenant/pzero/src/resources/us_covid_55555_subset.csv"
+      }
+    for (line <- Source.fromFile(filename).getLines) { println(line)}
+  }
+
+  def importCovid(): Unit = {
+
+  }
+
+
+  // def syncReadPretty(): Unit = {
+  //   println("2. Sync  - R - synchronous read/.find() selected - syncRead() function called.")
+  //   // Reads all documents from collection
+  //   ccollection.find().printResults()
+  //   // Finds the documents with the value "user1" for the field "username"
+  //   var talkaboutAPI = ccollection.find(in("username", "user1")).results().head.get("username").get.asString().getValue()
+  //   /** API **
+  //    * ccollection                                                                        //
+  //    * ccollection.find(BSON)                                                             //
+  //    * ccollection.find(BSON).results()                                                   //
+  //    * ccollection.find(BSON).results().head                                              //
+  //    * ccollection.find(BSON).results().head.get("fieldname")                             //
+  //    * ccollection.find(BSON).results().head.get("fieldname").get                         //
+  //    * ccollection.find(BSON).results().head.get("fieldname").get.asString()              //
+  //    * ccollection.find(BSON).results().head.get("fieldname").get.asString().getValue()   //
+  //    * 
+  //    ** BSON **
+  //    * import org.mongodb.scala.model._
+  //    * in() , equal() , gt() , lt() , min() , max() , regex() , ...
+  //    * in("fieldname", "value")
+  //    */
+
+  //   //init Date object for start time
+  // }
+
+
+
+  // def createAccount(): Unit= {
+  //   println("createAccount called")
+  //   var exists = true
+  //   var inputName = ""
+  //   var inputPassword = ""
+  //   //create username and password
+  //   while (exists == true) {
+  //   var p = Promise[Boolean]()
+  //   var f = p.future
+  //   var usernameExists = false
+  //   var user = ""
+  //   var pass = ""
+  //   // var w = () => {
+  //   //   pass = result.pass
+  //   //   user = result.user
+  //   // }
+  //     println("please create new username and password")
+  //     inputName = readLine("username: ") 
+  //     inputPassword = readLine( "password: ") 
+  //     //if username already exists then set usernameExists = true
+  //     val producerUsernameExists = Future {
+  //     ccollection.find(Document("username" -> inputName)).subscribe(new Observer[Document](){
+  //       var whatever = "just remember this is capable here"
+  //         override def onNext(result: Document) = {
+  //           println("I AM RUNNING ")
+  //           var w = "this is the value aPromise "
+  //           // var w = () => {
+  //           //   pass = result.pass
+  //           //   user = result.user
+  //           // }
+  //           usernameExists = true
+  //           // p success w
+  //         }
+  //         override def onError(e: Throwable): Unit = println(s"Error: $e")
+  //         override def onComplete(): Unit = println("Completed")
+  //       })
+  //     }
+  //     println("outside foreach:" + usernameExists)
+  //     val consumerUsernameExists = Future {
+  //       println("jsadbfkasbd")
+  //       f foreach { ifUsernameExistsFutureVar =>
+  //         // if already exists, ask again
+  //         println("inside foreach:" + usernameExists)
+  //         if (ifUsernameExistsFutureVar == true) {
+  //             println("user name already exists, please create another one")
+  //         }
+  //         else if (inputPassword.length<6) {
+  //             println("password must be at least 6 characters. please enter again")
+  //         }
+  //         else {
+  //             // db.password_file.insert({"name": inputName})
+  //             // db.password_file.insert({"password: " inputPassword})
+  //             ccollection.insertOne(Document("name" -> inputName, "password" -> inputPassword))
+  //             exists = false
+  //         }
+  //       }
+  //     }
+  //   }
+  // }  
+
+
 
   /* WHATS NEXT??? Future features to add
    * Inserts a subset of the csv file 'us_counties_covid19_daily.csv' (35 MB) into mongo collection 
