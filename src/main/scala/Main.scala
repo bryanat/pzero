@@ -1,5 +1,3 @@
-// Worked with Yueqi
-
 import org.mongodb.scala._
 import org.mongodb.scala.model._
 import org.mongodb.scala.model.Filters._
@@ -12,50 +10,84 @@ import tour.Helpers._
 import scala.io.StdIn.readLine
 import scala.concurrent._
 import ExecutionContext.Implicits.global
-//import org.mongodb.scala.bson.collection.mutable.Document
 import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.bson._
+import datasets.MongoInserts
 
-//RENAME pcollection
 
 object Main extends App {
   println("Main started")
 
+  // Abstract to its own file then import
   val mongoClient: MongoClient = MongoClient()
   val database: MongoDatabase = mongoClient.getDatabase("pzero")
-  // rename pcollection
-  val pcollection: MongoCollection[Document] = database.getCollection("passwordcollection")
-  // database.createCollection("collection1")
-  // database.createCollection("collection2")
+  val ucollection: MongoCollection[Document] = database.getCollection("usercollection")
 
+  // Generates 555 usernames and passwords into the collection ucollection
+  // MongoInserts.insertUsernamesAndPasswords(555, ucollection)
+  
+  def init() = {
+    println("""
+      |
+      |
+      |
+      |
+      |== MENU == 
+      |Select a number to continue
+      |1. Sync  - C - synchronous create/.insert()
+      |2. Sync  - R - synchronous read/.find()    
+      |3. Sync  - U - synchronous update/.update()
+      |4. Sync  - D - synchronous delete/.delete()
+      |5. Async - C - asynchronous create/.insert() 
+      |6. Async - R - asynchronous read/.find()     
+      |7. Async - U - asynchronous update/.update() 
+      |8. Async - D - asynchronous delete/.delete() 
+      |""".stripMargin) // stripMargin 
 
-  // pcollection.insertOne(Document("username" -> "user1", "password" -> "password1")).printResults()
-  // pcollection.insertOne(Document("username" -> "user2", "password" -> "password2")).printResults()
-  // pcollection.insertOne(Document("username" -> "user3", "password" -> "password3")).printResults()
-  // pcollection.insertOne(Document("username" -> "user6", "password" -> "password6")).printResults()
-  // pcollection.insertMany(Seq(Document("username" -> "user4", "password" -> "password4"), Document("username" -> "user5", "password" -> "password5"))).printResults()
-
-
-  def start(): Unit={
-      val stdIN = System.console()
-      println("Welcome to Jobs.com. please log in or create a new account")
-      println("enter L to log in")
-      println("enter C to create a new account")
-      val ans = readLine().toLowerCase()
-      if (ans =="l") {logIn()}
-      else if (ans=="t") {testThis()}
-      else if (ans=="c") {createAccount()}
+    var selection = 0 // default value
+    try {
+      selection = readLine("Select a number from the menu: ").toInt
+    }
+    catch {
+      case e => println("Can't you read, pick a number.")
+    }
+    finally {
+      selection match {
+        case 0 => println("You didn't input a number")
+        case 1 => println("syncCreate()")
+        case 2 => println("syncRead()")
+        case 3 => println("syncUpdate()")
+        case 4 => println("syncDelete()")
+        case 5 => println("asyncCreate()")
+        case 6 => println("asyncRead()")
+        case 7 => println("asyncUpdate()")
+        case 8 => println("asyncDelete()")
+      }
+    }
   }
+  init()
 
-  start()
+/* REGEX */
+/* FUTURE & PROMISE */
+/* EXTENDS */
+/* CRUD */
+  //SYNCRONOUS
+    //Read 
+    //Create
+    //Update
+    //Delete
+  //ASYNCRONOUS
+    //Read 
+    //Create
+    //Update
+    //Delete
 
-  /* REGEX */
-  /* FUTURE & PROMISE */
-  /* EXTENDS */
+
+
   
   /* REGEX 
     val myRegex = "([\"'])(?:(?=(\\?))\2.)*?\1".r
-    var yp = pcollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass //BsonString{value='user1'}
+    var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass //BsonString{value='user1'}
     myRegex.findFirstMatchIn( yp ) match {
         case Some(_) => println("Password OK")
         case None => println("Password must contain a number")
@@ -63,58 +95,38 @@ object Main extends App {
   */
 
 
-  // def isInt(userinput): Boolean = {
-  //   if (userinput.toInt) {
-  //     true
-  //   }
-  //   else {
-  //     false
-  //     //redo input
-  //   }
-  // }
-
-  // val x = isInt(readLine("username: ")) 
-
-
-  // def toInt(s: String): Option[Int] = {
-  // try {
-  //   Some(s.toInt)
-  // } catch {
-  //   case e: Exception => None
-  // }
-  // }
-
-
-  // def isCorrectType(): Boolean = {
-  //   x.getClass
-  //     case int >
-  //       isInt()
-  // }
-
-  // def syntaxedComments(): Unit = {
-  //   println(pcollection.find(Document("username" -> "user1")).results().head.toJson()) 
-  //   println(pcollection.find(Document("username" -> "user1")).results().head.get("username")) //user1 
-  // }
-
   def testThis(): Unit = {
     println("I AM WORKING")
 
+    // pcollection.insertOne(equal("username", "userX"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon")))
+    ucollection.updateOne(equal("username", "user1"), set("work_experience_req", Document("job" -> "engineer", "company" -> "nikon"))).printResults()
 
-    //pcollection.find(Document("username" -> "user1")).printResults()
-    //pcollection.find(Document("username" -> "user1")).results().getClass
-    // println(pcollection.find(Document("username" -> "user1")).results().getClass)
-    // println(pcollection.find(Document("username" -> "user1")).results())
+
+
+    // var inputName = readLine("INPUT USERNAME: ")
+    // var l = inputName.toString()
+
+    // var query = Document("username"-> inputName.toString())
+    // var query = Document("username"-> "user2")
+    // var update = Document(BsonString("password")-> "xxxxxx")
+    // var update = Document(BsonString("password")-> "xxxxxx")
+    //ucollection.updateOne(equal("username", "user2"), set("username", "USERNAMEUPDATED")).printResults()
+
+    //ucollection.find(Document("username" -> "user1")).printResults()
+    //ucollection.find(Document("username" -> "user1")).results().getClass
+    // println(ucollection.find(Document("username" -> "user1")).results().getClass)
+    // println(ucollection.find(Document("username" -> "user1")).results())
       // will need find() or filter() after .head
     
-    // println(pcollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass) //BsonString{value='user1'}
+    // println(ucollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass) //BsonString{value='user1'}
     
-    // var yp = pcollection.find(Document("username" -> "user1")).results().head.get("username").get.toString.getClass //BsonString{value='user1'}
-    //var yp = pcollection.find(Document("username" -> "user1")).results().head.get("username").get.asString() //BsonString{value='user1'}
-    // var yp = pcollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass //BsonString{value='user1'}
-    //var yl = pcollection.find(Document("username" -> "user1")).results().head.get("key").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
+    // var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.toString.getClass //BsonString{value='user1'}
+    //var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.asString() //BsonString{value='user1'}
+    // var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.getClass //BsonString{value='user1'}
+    //var yl = ucollection.find(Document("username" -> "user1")).results().head.get("key").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
     
     // GOLDEN IT FINALLY WORKS, ALL FINDS NOW CAN WORK SYNCRONOUSLY WITH THE CODE BELOW WITHOUT ASYNC FUTURES AND PROMISES
-    var yp = pcollection.find(Document("username" -> "user1")).results().head.get("username").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
+    var yp = ucollection.find(Document("username" -> "user1")).results().head.get("username").get.asString().getValue() //TYPE: Bson VALUE: BsonString{value='user1'}
     println(yp)
     // val regexQuote = "/('[^']*')/".r //finds values between 'single quotations'
     // var test = "dfbashdfbas'thisrighthere'"
@@ -126,16 +138,16 @@ object Main extends App {
     //     case None => println("Password must contain a number")
     // }
     
-    //println(pcollection.find(Document("username" -> "user1")).results().head.get("username").get)
+    //println(ucollection.find(Document("username" -> "user1")).results().head.get("username").get)
 
     println("deadline.")
-    // println(pcollection.find(Document("username" -> "user1")).results().head) // Document : 
-    //println(pcollection.find(Document("username" -> "user1")).results().head.get("username")) // Some
+    // println(ucollection.find(Document("username" -> "user1")).results().head) // Document : 
+    //println(ucollection.find(Document("username" -> "user1")).results().head.get("username")) // Some
     
     
   }
       //
-    // println(pcollection.find(Document("username" -> "user1")).results().head.find(("username", "user1"))) //user1
+    // println(ucollection.find(Document("username" -> "user1")).results().head.find(("username", "user1"))) //user1
       // ^^^^ AHH ITS A DOCUMENT
       // {"key" : value}
       // Document("key1" -> "value1", "")
@@ -144,32 +156,19 @@ object Main extends App {
 
   def logIn(): Unit= {
 
-    val v1 = "hey"
-    val v2 = "678"
-
-    // println(v1.toInt) // try catch if error then while loop
-    println(v2.toInt)
-
-    // val v11 = readLine("enter word: ")
-    val v12 = readLine("enter number: ")
-
-    // println(v11.toInt)
-    println(v12.toInt)
-
-    val x = 5
-    def f[T](v: T) = v
-    println(f(x.getClass)) // T is Int, the type of x
-    // //pcollection.find().printResults()
-    // //var b2 = pcollection.find(in("name" -> "user1")).results()
+    ucollection.find().printResults()
+    // T is Int, the type of x
+    // //ucollection.find().printResults()
+    // //var b2 = ucollection.find(in("name" -> "user1")).results()
     // /*
     //  * COMPARING SYNC AND ASYNC
     //  */
-    // var b = pcollection.find(Document("username" -> "usersada1")).results()
+    // var b = ucollection.find(Document("username" -> "usersada1")).results()
     // //var bb = b.foreach() // returns an iterable
     // println(b) // returns an iterable
 
-    // // println(pcollection.find().getResults())
-    // //var r = pcollection.find().getResults() //"name" : "squiggles"
+    // // println(ucollection.find().getResults())
+    // //var r = ucollection.find().getResults() //"name" : "squiggles"
    }
 
 
@@ -197,7 +196,7 @@ object Main extends App {
       inputPassword = readLine( "password: ") 
       //if username already exists then set usernameExists = true
       val producerUsernameExists = Future {
-      pcollection.find(Document("username" -> inputName)).subscribe(new Observer[Document](){
+      ucollection.find(Document("username" -> inputName)).subscribe(new Observer[Document](){
         var whatever = "just remember this is capable here"
           override def onNext(result: Document) = {
             println("I AM RUNNING ")
@@ -229,7 +228,7 @@ object Main extends App {
           else {
               // db.password_file.insert({"name": inputName})
               // db.password_file.insert({"password: " inputPassword})
-              pcollection.insertOne(Document("name" -> inputName, "password" -> inputPassword))
+              ucollection.insertOne(Document("name" -> inputName, "password" -> inputPassword))
               exists = false
               println("IM HEREEEEEEE XXX")
           }
@@ -237,17 +236,6 @@ object Main extends App {
       }
     }
   }  
-
-  // val mongoClient2: MongoClient = MongoClient()
-  // val database2: MongoDatabase = mongoClient2.getDatabase("pzero")
-  // val c1collection: MongoCollection[Document] = database2.getCollection("collection1")
-  // c1collection.insertOne(Document("whateverkey" -> "whateverrrrrvalue"))
-  // c1collection.find().printResults()
-  
-  // val c2collection: MongoCollection[Document] = database.getCollection("collection2")
-  // c2collection.insertOne(Document("somekey" -> "someeeeeeeevalue"))
-  // c2collection.find().printResults()
-
 }
 
 /*****************************************************************************/
@@ -270,11 +258,11 @@ object Main extends App {
     //  * COMPARING SYNC AND ASYNC
     //  */
     // // SYNC
-    // var b = pcollection.find(Document("username" -> "user1")).results() //results is an async function (implemented through Await scala.concurrent.Await (blocking) )
+    // var b = ucollection.find(Document("username" -> "user1")).results() //results is an async function (implemented through Await scala.concurrent.Await (blocking) )
     // b.results() // returns a list of iterables (THIS IS GOING TOO FAR FOR SAKE OF VERBAL TIME)
     // foreach() // returns an iterable (THIS IS GOING TOO FAR)
 
     // // ASYNC (alt + right arrow key to split and compare side by side)
-    // var b = pcollection.find(Document("username" -> "user1")).subscribe() //subscribe is an async function (implemented through Future and Promise scala.concurrent.{Future, Promise} (nonblocking))
+    // var b = ucollection.find(Document("username" -> "user1")).subscribe() //subscribe is an async function (implemented through Future and Promise scala.concurrent.{Future, Promise} (nonblocking))
     // b.subscribe() // returns an list of observer (THIS IS GOING TOO FAR FOR SAKE OF VERBAL TIME)
     
