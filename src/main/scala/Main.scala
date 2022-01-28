@@ -16,7 +16,7 @@ import datasets.MongoInserts
 import scala.io.Source
 
 /** OBJECTIVES FOR THIS P0 CODE **/
-/* CRUD */
+  /* CRUD */
     //SYNCRONOUS
       //Read 
       //Create
@@ -95,23 +95,6 @@ object Main extends App {
     ccollection.find().printResults()
     // Finds the documents with the value "user1" for the field "username"
     var talkaboutAPI = ccollection.find(in("username", "user1")).results().head.get("username").get.asString().getValue()
-    /** API **
-     * ccollection                                                                        //
-     * ccollection.find(BSON)                                                             //
-     * ccollection.find(BSON).results()                                                   //
-     * ccollection.find(BSON).results().head                                              //
-     * ccollection.find(BSON).results().head.get("fieldname")                             //
-     * ccollection.find(BSON).results().head.get("fieldname").get                         //
-     * ccollection.find(BSON).results().head.get("fieldname").get.asString()              //
-     * ccollection.find(BSON).results().head.get("fieldname").get.asString().getValue()   //
-     * 
-     ** BSON **
-     * import org.mongodb.scala.model._
-     * in() , equal() , gt() , lt() , min() , max() , regex() , ...
-     * in("fieldname", "value")
-     */
-
-    //init Date object for start time
   }
 
   def syncUpdate(): Unit = {
@@ -137,33 +120,8 @@ object Main extends App {
     println("The password for "+userinput+" is: " + ccollection.find(in("username", userinput)).results().head.get("password").get.asString().getValue())
   }
 
-  def login(): Unit = {
-    var userinputUsername = readLine("Enter username: ")
-    var userinputPassword = readLine("Enter password: ")
-    // if (userinputUsername == ccollection.find(in("username", userinputUsername)).results().head.get("username").get.asString().getValue() 
-    // println(ccollection.find(in("username", userinputUsername)).results().head.get("password").get.asString().getValue())
-    if (userinputUsername == ccollection.find(in("username", userinputUsername)).results().head.get("username").get.asString().getValue() 
-        && userinputPassword == ccollection.find(in("username", userinputUsername)).results().head.get("password").get.asString().getValue()) {
-          println("LOGGED IN")
-          loggedinMenu();
-        }
-    else {
-      println("Incorrect password for the entered username, try again.")
-      login();
-    }
-  }
-  
-  /* REGEX 
-    val myRegex = "([\"'])(?:(?=(\\?))\2.)*?\1".r
-    var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get //BsonString{value='user1'}
-    myRegex.findFirstMatchIn( yp ) match {
-        case Some(_) => println("Password OK")
-        case None => println("Password must contain a number")
-    }
-  */
-   
   def asyncRead(): Unit = {
-    println("6s. Async - R - asynchronous read/.find() selected - asyncRead() function called.")
+    println("6. Async - R - asynchronous read/.find() selected - asyncRead() function called.")
     var aPromise = Promise[String]()
     var aFuture = aPromise.future
     var aPassword = "" // scope outside the Future below
@@ -186,6 +144,23 @@ object Main extends App {
       }
     }
 
+  def login(): Unit = {
+    println("7. Login - login() function called.")
+    var userinputUsername = readLine("Enter username: ")
+    var userinputPassword = readLine("Enter password: ")
+    // if (userinputUsername == ccollection.find(in("username", userinputUsername)).results().head.get("username").get.asString().getValue() 
+    // println(ccollection.find(in("username", userinputUsername)).results().head.get("password").get.asString().getValue())
+    if (userinputUsername == ccollection.find(in("username", userinputUsername)).results().head.get("username").get.asString().getValue() 
+        && userinputPassword == ccollection.find(in("username", userinputUsername)).results().head.get("password").get.asString().getValue()) {
+          println("LOGGED IN")
+          loggedinMenu();
+        }
+    else {
+      println("Incorrect password for the entered username, try again.")
+      login();
+    }
+  }
+   
   def loggedinMenu(): Unit = {
     def subMenu(): Unit = {
       println("""
@@ -219,6 +194,9 @@ object Main extends App {
     subMenu() 
   }
 
+  /*
+   * IN THE FUTURE COULD REPLACE THE PRINTLN IN streamCovid WITH DATA STREAMS
+   */
   def streamCovid(size: String): Unit = {
     var filename = ""
     size match 
@@ -229,11 +207,16 @@ object Main extends App {
       }
     for (line <- Source.fromFile(filename).getLines) { println(line)}
   }
+}
 
-  def importCovid(): Unit = {
-
-  }
-
+  /* REGEX 
+    val myRegex = "([\"'])(?:(?=(\\?))\2.)*?\1".r
+    var yp = ccollection.find(Document("username" -> "user1")).results().head.get("username").get //BsonString{value='user1'}
+    myRegex.findFirstMatchIn( yp ) match {
+        case Some(_) => println("Password OK")
+        case None => println("Password must contain a number")
+    }
+  */
 
   // def syncReadPretty(): Unit = {
   //   println("2. Sync  - R - synchronous read/.find() selected - syncRead() function called.")
@@ -260,80 +243,6 @@ object Main extends App {
   //   //init Date object for start time
   // }
 
-
-
-  // def createAccount(): Unit= {
-  //   println("createAccount called")
-  //   var exists = true
-  //   var inputName = ""
-  //   var inputPassword = ""
-  //   //create username and password
-  //   while (exists == true) {
-  //   var p = Promise[Boolean]()
-  //   var f = p.future
-  //   var usernameExists = false
-  //   var user = ""
-  //   var pass = ""
-  //   // var w = () => {
-  //   //   pass = result.pass
-  //   //   user = result.user
-  //   // }
-  //     println("please create new username and password")
-  //     inputName = readLine("username: ") 
-  //     inputPassword = readLine( "password: ") 
-  //     //if username already exists then set usernameExists = true
-  //     val producerUsernameExists = Future {
-  //     ccollection.find(Document("username" -> inputName)).subscribe(new Observer[Document](){
-  //       var whatever = "just remember this is capable here"
-  //         override def onNext(result: Document) = {
-  //           println("I AM RUNNING ")
-  //           var w = "this is the value aPromise "
-  //           // var w = () => {
-  //           //   pass = result.pass
-  //           //   user = result.user
-  //           // }
-  //           usernameExists = true
-  //           // p success w
-  //         }
-  //         override def onError(e: Throwable): Unit = println(s"Error: $e")
-  //         override def onComplete(): Unit = println("Completed")
-  //       })
-  //     }
-  //     println("outside foreach:" + usernameExists)
-  //     val consumerUsernameExists = Future {
-  //       println("jsadbfkasbd")
-  //       f foreach { ifUsernameExistsFutureVar =>
-  //         // if already exists, ask again
-  //         println("inside foreach:" + usernameExists)
-  //         if (ifUsernameExistsFutureVar == true) {
-  //             println("user name already exists, please create another one")
-  //         }
-  //         else if (inputPassword.length<6) {
-  //             println("password must be at least 6 characters. please enter again")
-  //         }
-  //         else {
-  //             // db.password_file.insert({"name": inputName})
-  //             // db.password_file.insert({"password: " inputPassword})
-  //             ccollection.insertOne(Document("name" -> inputName, "password" -> inputPassword))
-  //             exists = false
-  //         }
-  //       }
-  //     }
-  //   }
-  // }  
-
-
-
-  /* WHATS NEXT??? Future features to add
-   * Inserts a subset of the csv file 'us_counties_covid19_daily.csv' (35 MB) into mongo collection 
-   * Small  : us_covid_555_subset.csv
-   * Medium : us_covid_5555_subset.csv
-   * Large  : us_covid_55555_subset.csv
-   */
-  def insertCovidData(): Unit = {
-  }
-}
-
 /*****************************************************************************/
 // ASYNC USES A SUBSCRIBER
 // .subscribe(new Observer[Document](){
@@ -347,19 +256,14 @@ object Main extends App {
 //         override def onComplete(): Unit = println("Completed")
 //       } })
 
-
-
-
-
-    // /*
-    //  * COMPARING SYNC AND ASYNC
-    //  */
-    // // SYNC
-    // var b = ccollection.find(Document("username" -> "user1")).results() //results is an sync function (implemented through Await scala.concurrent.Await (blocking) )
-    // b.results() // returns a list of iterables (THIS IS GOING TOO FAR FOR SAKE OF VERBAL TIME)
-    // foreach() // returns an iterable (THIS IS GOING TOO FAR)
-
-    // // ASYNC (alt + right arrow key to split and compare side by side)
-    // var b = ccollection.find(Document("username" -> "user1")).subscribe() //subscribe is an async function (implemented through Future and Promise scala.concurrent.{Future, Promise} (nonblocking))
-    // b.subscribe() // returns an list of observer (THIS IS GOING TOO FAR FOR SAKE OF VERBAL TIME)
+// /*
+//  * COMPARING SYNC AND ASYNC
+//  */
+// // SYNC
+// var b = ccollection.find(Document("username" -> "user1")).results() //results is an sync function (implemented through Await scala.concurrent.Await (blocking) )
+// b.results() // returns a list of iterables (THIS IS GOING TOO FAR FOR SAKE OF VERBAL TIME)
+// foreach() // returns an iterable (THIS IS GOING TOO FAR
+// // ASYNC (alt + right arrow key to split and compare side by side)
+// var b = ccollection.find(Document("username" -> "user1")).subscribe() //subscribe is an async function (implemented through Future and Promise scala.concurrent.{Future, Promise} (nonblocking))
+// b.subscribe() // returns an list of observer (THIS IS GOING TOO FAR FOR SAKE OF VERBAL TIME)
     
