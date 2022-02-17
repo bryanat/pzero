@@ -15,6 +15,7 @@ import org.mongodb.scala.bson._
 import datasets.MongoInserts
 import scala.io.Source
 
+
 /** OBJECTIVES FOR THIS P0 CODE **/
   /* CRUD */
     //SYNCRONOUS
@@ -39,7 +40,7 @@ object Main extends App {
   /* Generates 555 usernames and passwords into the collection ccollection */
   // MongoInserts.insertUsernamesAndPasswords(555, ccollection)
 
-  def init() = {
+
     def menu(): Unit = {
       println("""
         |
@@ -55,7 +56,7 @@ object Main extends App {
         |6. Async - R - asynchronous read/.find()
         |7. Login
         |""".stripMargin) // stripMargin removes padding from the left side of the console
-      var selection = 9 // default value (non 0-5)
+      var selection = 99 // default value (non 0-5)
       try {
         selection = readLine("Select a number from the menu: ").toInt
       }
@@ -72,13 +73,13 @@ object Main extends App {
           case 5 => {syncReadKey();  menu()}  // .find() key value
           case 6 => {asyncRead();  menu()}    // .find() but async
           case 7 => {login();}                //
-          case _ => {println("Invalid number, pick a number 0 through 7."); menu()} // catch all for non numbers 0-7, recursive menu() call to loop 
+          case _ => {println("Invalid number, pick a number from the menu."); menu()} // catch all for non numbers 0-7, recursive menu() call to loop 
         }
       }
     }
     menu() 
-  }
-  init()
+
+
 
   def syncCreate(): Unit = {
     println("1. Sync  - C - synchronous create/.insert() selected - syncCreate() function called.")
@@ -172,6 +173,7 @@ object Main extends App {
                 |1. Stream Covid data (small)
                 |2. Stream Covid data (medium)
                 |3. Stream Covid data (large)
+                |4. Back to main menu
                 |""".stripMargin) // stripMargin removes padding from the left side of the console
       var selection = 9 // default value (non 0-5)
       try {
@@ -183,10 +185,10 @@ object Main extends App {
       finally {
         selection match {
           case 0 => System.exit(0)            // 0 is exit
-          case 1 => {streamCovid("small"); subMenu()}   
-          case 2 => {streamCovid("medium");   subMenu()}  
-          case 3 => {streamCovid("large"); subMenu()}  
-          case 4 => {importCovid();}
+          case 1 => {streamMongo("small"); subMenu()}   
+          case 2 => {streamMongo("medium");   subMenu()}  
+          case 3 => {streamMongo("large"); subMenu()}  
+          case 4 => {menu()}
           case _ => {println("Invalid number, pick a number 0 through 3."); subMenu()} // catch all for non numbers 0-3, recursive menu() call to loop 
         }
       }
@@ -194,20 +196,58 @@ object Main extends App {
     subMenu() 
   }
 
-  /*
-   * IN THE FUTURE COULD REPLACE THE PRINTLN IN streamCovid WITH DATA STREAMS
-   */
-  def streamCovid(size: String): Unit = {
-    var filename = ""
-    size match 
+
+    /*
+     * IN THE FUTURE COULD REPLACE THIS WITH EVEN MORE SOPHISTICATED DATA STREAMS
+     */
+    /*
+     * steps of MapReduce, 0: input data , 1: split data, 2: Map data, 3: shuffle data, 4: Reduce data
+     * Reduce is Output
+     * Reduce is reason for using MapReduce
+     * YOU REDUCE ON THE KEY
+     */
+    /*
+     * Streams in CSV files
+     * def streamData
+     */
+    def streamMongo(size: String): Unit = {
+      println("function streamMongo()")
+      var filename = "";
+      size match 
       {
+        case "tiny" => filename = "C:/revenant/pzero/src/resources/us_covid_5_subset.csv"
         case "small" => filename = "C:/revenant/pzero/src/resources/us_covid_555_subset.csv"
         case "medium" => filename = "C:/revenant/pzero/src/resources/us_covid_5555_subset.csv"
         case "large" => filename = "C:/revenant/pzero/src/resources/us_covid_55555_subset.csv"
       }
-    for (line <- Source.fromFile(filename).getLines) { println(line)}
-  }
+      for (line <- Source.fromFile(filename).getLines) { 
+        /*
+         * EACH LOOP IS A LINE IN THE IMPORTED FILE
+         */
+        val regexComma = "(?!,)[^,]*".r // split by comma
+
+        /*
+         * ListOps in constant O(1) time, .prepend (set) is constant, head and tail (get) is constant 
+         */
+        val listOfValues = regexComma.findAllMatchIn(line).toList
+        println(listOfValues(0))
+
+        // key are taken from header of date,county,state,fips,cases,deaths
+        ccollection.insertOne(Document("date" -> listOfValues(0).toString(), "county" -> listOfValues(1).toString(), "state" -> listOfValues(2).toString(), "fips" -> listOfValues(3).toString(), "cases" -> listOfValues(4).toString(), "deaths" -> listOfValues(5).toString())).printResults()
+
+      }
+    }
+
+  /*
+  def streamCreate()
+  def streamRead()
+  def streamUpdate()
+  def streamDelete()
+  */
+
+  //End of Main
 }
+
 
   /* REGEX 
     val myRegex = "([\"'])(?:(?=(\\?))\2.)*?\1".r
@@ -217,6 +257,7 @@ object Main extends App {
         case None => println("Password must contain a number")
     }
   */
+
 
   // def syncReadPretty(): Unit = {
   //   println("2. Sync  - R - synchronous read/.find() selected - syncRead() function called.")
